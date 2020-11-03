@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+* Add `breadcrumbs_cache_key` for providing the fragment cache key of the current breacrumbs (via #3)
+
 ## Version 4.1.0
 * Depends only `railties` and `actionview`, not `rails` (via #7)
 * Include `Gretel::ViewHelpers` module in `ActiveSupport.on_load(:action_view)` block
