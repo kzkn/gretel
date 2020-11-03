@@ -489,6 +489,59 @@ describe Gretel::ViewHelpers, type: :helper do
     end
   end
 
+  describe 'Cache' do
+    it "basic breadcrumb" do
+      breadcrumb :basic
+      expect(breadcrumbs_cache_key).to eq [:gretel, :basic, []]
+    end
+
+    it "breadcrumb with parent" do
+      breadcrumb :with_parent
+      expect(breadcrumbs_cache_key).to eq [:gretel, :with_parent, [], []]
+    end
+
+    it "breadcrumb with argument" do
+      breadcrumb :object, projects(:one)
+      expect(breadcrumbs_cache_key).to eq [:gretel, :object, [projects(:one)]]
+    end
+
+    it "breadcrumb with parent argument" do
+      issue = issues(:one)
+      breadcrumb :with_parent_object, issue
+      expect(breadcrumbs_cache_key).to eq [:gretel, :with_parent_object, [issue.project], [issue]]
+    end
+
+    it "multiple arguments" do
+      breadcrumb :with_multiple_arguments, 1, 2, 3
+      expect(breadcrumbs_cache_key).to eq [:gretel, :with_multiple_arguments, [2, 4, 6], [1, 2, 3]]
+    end
+
+    it "multiple arguments" do
+      project = Project.first
+      breadcrumb project
+      expect(breadcrumbs_cache_key).to eq [:gretel, :project, [project]]
+    end
+
+    it "no breadcrumb" do
+      expect(breadcrumbs_cache_key).to eq [:gretel]
+    end
+
+    it "custom cache key" do
+      breadcrumb :with_custom_cache_key
+      expect(breadcrumbs_cache_key).to eq [:gretel, :with_custom_cache_key, ["About Cache Key"]]
+    end
+
+    it "multiple custom cache key" do
+      breadcrumb :with_multiple_custom_cache_keys
+      expect(breadcrumbs_cache_key).to eq [:gretel, :with_multiple_custom_cache_keys, ["About Cache Key"], ["About", "Cache", "Key"]]
+    end
+
+    it "custom cache key by passed argument" do
+      breadcrumb :with_custom_cache_key_by_passed_argument, "Alice"
+      expect(breadcrumbs_cache_key).to eq [:gretel, :with_custom_cache_key_by_passed_argument, ["hello, Alice"]]
+    end
+  end
+
   private
 
   def setup_loading_from_tmp_folder

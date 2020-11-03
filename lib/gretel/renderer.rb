@@ -55,6 +55,10 @@ module Gretel
       end
     end
 
+    def cache_key
+      [current_crumb&.key, *crumbs.map(&:cache_key)]
+    end
+
     private
 
     attr_reader :context, :breadcrumb_key, :breadcrumb_args
@@ -121,6 +125,10 @@ module Gretel
                   else
                     []
                   end
+    end
+
+    def current_crumb
+      crumbs.last
     end
 
     # Proxy to view context.

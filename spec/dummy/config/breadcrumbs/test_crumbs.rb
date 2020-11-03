@@ -83,3 +83,19 @@ crumb :with_inferred_parent do
   link "Test", about_path
   parent Project.first
 end
+
+crumb :with_custom_cache_key do
+  link "About", about_path
+  cache_key "About Cache Key"
+end
+
+crumb :with_multiple_custom_cache_keys do
+  link "About", about_path
+  cache_key "About", "Cache", "Key"
+  parent :with_custom_cache_key
+end
+
+crumb :with_custom_cache_key_by_passed_argument do |name|
+  link "About", about_path
+  cache_key "hello, #{name}"
+end

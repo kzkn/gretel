@@ -63,6 +63,12 @@ module Gretel
       end
     end
 
+    def breadcrumbs_cache_key
+      keys = [:gretel, *gretel_renderer.cache_key]
+      keys.compact!
+      keys
+    end
+
     private
 
     # Reference to the Gretel breadcrumbs renderer.

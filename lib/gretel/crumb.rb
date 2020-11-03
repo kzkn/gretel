@@ -15,6 +15,7 @@ module Gretel
       raise ArgumentError, "Breadcrumb :#{key} not found." unless block
       @key = key
       @context = context
+      @args = args
       instance_exec(*args, &block)
     end
 
@@ -54,6 +55,12 @@ module Gretel
       key = args.shift
 
       @parent = Gretel::Crumb.new(context, key, *args)
+    end
+
+    def cache_key(*args)
+      return (@cache_key || @args) if args.empty?
+
+      @cache_key = args
     end
 
     # Key of the breadcrumb.
