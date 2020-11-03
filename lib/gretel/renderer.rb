@@ -100,34 +100,27 @@ module Gretel
     end
 
     # Array of links for the path of the breadcrumb.
-    # Also reloads the breadcrumb configuration if needed.
     def links
-      @links ||= if @breadcrumb_key.present?
-        # Reload breadcrumbs configuration if needed
-        Gretel::Crumbs.reload_if_needed
-
-        # Get breadcrumb set by the `breadcrumb` method
-        crumb = Gretel::Crumb.new(context, breadcrumb_key, *breadcrumb_args)
-
-        # Links of first crumb
-        links = crumb.links.dup
-
-        # Get parent links
-        links.unshift *parent_links_for(crumb)
-
-        links
-      else
-        []
-      end
+      @links ||= (crumbs.map(&:links).flatten! || [])
     end
 
-    # Returns parent links for the crumb.
-    def parent_links_for(crumb)
-      links = []
-      while crumb = crumb.parent
-        links.unshift *crumb.links
-      end
-      links
+    # Array of crumbs for the path of the breadcrumb.
+    # Also reloads the breadcrumb configuration if needed.
+    def crumbs
+      @crumbs ||= if @breadcrumb_key.present?
+                    # Reload breadcrumbs configuration if needed
+                    Gretel::Crumbs.reload_if_needed
+
+                    # Get breadcrumb set by the `breadcrumb` method
+                    crumb = Gretel::Crumb.new(context, breadcrumb_key, *breadcrumb_args)
+                    crumbs = [crumb]
+                    while crumb = crumb.parent
+                      crumbs.unshift(crumb)
+                    end
+                    crumbs
+                  else
+                    []
+                  end
     end
 
     # Proxy to view context.
