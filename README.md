@@ -255,7 +255,7 @@ If you supply a block, it will yield the link if it is present:
 If you want to cache the rendered breacrumbs, you can use the Rails `cache` method with the `breadcrumbs_cache_key`.
 
 ```erb
-<% cache breadcrumbs_cache_key %>
+<% cache breadcrumbs_cache_key do %>
   <%= breadcrumbs %>
 <% end %>
 ```
