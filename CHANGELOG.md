@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+* Add `breadcrumbs_cache_key` for providing the fragment cache key of the current breacrumbs (via #3)
+
 ## Version 4.2.0
 * Support generating JSON-LD structured data. See the readme for more info (via #26, thanks @dkniffin)
 
