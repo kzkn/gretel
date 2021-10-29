@@ -1,3 +1,5 @@
+require 'gretel/railtie'
+
 module Gretel
   module Crumbs
     class << self
@@ -50,6 +52,53 @@ module Gretel
         Dir[*Gretel.breadcrumb_paths]
       end
 
+      def breadcrumb_routes
+        named_routes = {}
+
+        Rails.application.routes.named_routes.each do |name, route|
+          path = route.path.spec.to_s.gsub(/\(\.:format\)/, '')
+          next if path.blank? || path.start_with?('/rails')
+
+          named_routes[path] = {
+            name: name,
+            route: route
+          }
+        end
+
+        named_routes.map do |path, named_route|
+          current_name = named_route[:name]
+
+          parent_path = path.split('/')
+          parent_path.pop
+          parent_path[-1] = ':id' if parent_path.last&.match?(/:.+_id/)
+          parent_name = named_routes.dig(parent_path.join('/'), :name)
+
+          required_parts = named_route[:route].required_parts.map do |part|
+            if part == :id
+              'current'
+            else
+              part.to_s.gsub(/_id/, '')
+            end
+          end.join(', ')
+
+          if required_parts.present?
+            <<~RUBY
+              crumb :#{current_name} do |#{required_parts}|
+                link current., #{current_name}_path(#{required_parts})
+                parent :#{parent_name}, parent
+              end
+            RUBY
+          else
+            <<~RUBY
+              crumb :#{current_name} do
+                link I18n.t("breadcrumb.#{current_name}"), #{current_name}_path
+                parent :#{parent_name}
+              end
+            RUBY
+          end
+        end.join("\n")
+      end
+
     private
 
       def loaded_file_mtimes
@@ -66,6 +115,12 @@ module Gretel
         # Stores the supplied block for later use.
         def crumb(key, &block)
           crumbs[key] = block
+        end
+
+        def build_by_route(route)
+          crumb route.name.to_sym do ||
+
+          end
         end
 
         # Returns a hash of all stored crumb blocks.
