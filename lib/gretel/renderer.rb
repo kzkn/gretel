@@ -320,11 +320,10 @@ module Gretel
           text = breadcrumb_link_to(text, url, itemprop: "item", "aria-current": aria_current, class: options[:link_class])
           aria_current = nil
         elsif options[:current_link].present?
-          current_url = "#{root_url}#{options[:current_link].gsub(/^\//, '')}"
-          text = text + tag(:meta, itemprop: "item", content: current_url)
+          text = text + tag(:link, itemprop: "item", href: options[:current_link])
         end
 
-        text = text + tag(:meta, itemprop:"position", content: "#{position}")
+        text = text + tag(:meta, itemprop: "position", content: "#{position}")
         content_tag(fragment_tag.to_sym, text, class: fragment_class, itemprop: "itemListElement", itemscope: "", itemtype: "https://schema.org/ListItem", "aria-current": aria_current)
       end
 
