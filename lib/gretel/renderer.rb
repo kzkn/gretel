@@ -87,7 +87,7 @@ module Gretel
       end
 
       # Set current link to actual path
-      if options[:link_current_to_request_path] && out.any? && request
+      if options[:link_current_to_request_path] && out.any? && request&.fullpath.present?
         out.last.url = request.fullpath
       end
 
