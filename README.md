@@ -1,5 +1,5 @@
 [![Gem Version](https://badge.fury.io/rb/gretel.svg)](http://badge.fury.io/rb/gretel)
-![](https://github.com/kzkn/gretel/workflows/CI/badge.svg)
+[![](https://github.com/kzkn/gretel/workflows/CI/badge.svg)](https://github.com/kzkn/gretel/actions/workflows/ci.yml)
 
 <img src="http://i.imgur.com/CAKEaBM.png" alt="Handle breadcrumb trails... like a boss :)" />
 
