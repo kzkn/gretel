@@ -39,6 +39,7 @@ jobs:
       env:
         RAILS_VERSION: "${{ matrix.rails_version }}"
       run: |
+        gem update --system
         bundle update
         cd spec/dummy; rake db:migrate db:test:prepare; cd ../..
         bundle exec rake
