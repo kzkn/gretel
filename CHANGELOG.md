@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## Version 4.5.0
 * Use `link` element for link item in semantic markup instead of `meta` element (via #36, thanks @tkawa)
 * Use `link_data` to set data attributes for link item (via #38, thanks @SpaYco)
 
