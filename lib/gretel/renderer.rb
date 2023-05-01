@@ -265,16 +265,12 @@ module Gretel
       end
 
       def fragment_options
-        options.slice(:fragment_class, :link_class)
+        options.slice(:fragment_class, :link_class, :link_data)
       end
 
       def join_classes(*classes)
         clazz = classes.join(' ').strip
         clazz.blank? ? nil : clazz
-      end
-
-      def link_data
-        options[:link_data] || {}
       end
 
       # Proxy for +context.link_to+ that can be overridden by plugins.
@@ -294,13 +290,13 @@ module Gretel
 
         if fragment_tag
           if url.present?
-            text = breadcrumb_link_to(text, url, "aria-current": options[:aria_current], data: link_data)
+            text = breadcrumb_link_to(text, url, "aria-current": options[:aria_current], data: options[:link_data])
             content_tag(fragment_tag, text, class: fragment_class)
           else
-            content_tag(fragment_tag, text, class: fragment_class, "aria-current": options[:aria_current], data: link_data)
+            content_tag(fragment_tag, text, class: fragment_class, "aria-current": options[:aria_current], data: options[:link_data])
           end
         elsif url.present?
-          breadcrumb_link_to(text, url, class: join_classes(fragment_class, options[:link_class]), "aria-current": options[:aria_current], data: link_data)
+          breadcrumb_link_to(text, url, class: join_classes(fragment_class, options[:link_class]), "aria-current": options[:aria_current], data: options[:link_data])
         elsif options[:class].present?
           content_tag(:span, text, class: fragment_class, "aria-current": options[:aria_current])
         else
@@ -321,14 +317,14 @@ module Gretel
 
         aria_current = options[:aria_current]
         if url.present?
-          text = breadcrumb_link_to(text, url, itemprop: "item", "aria-current": aria_current, class: options[:link_class], data: link_data)
+          text = breadcrumb_link_to(text, url, itemprop: "item", "aria-current": aria_current, class: options[:link_class], data: options[:link_data])
           aria_current = nil
         elsif options[:current_link].present?
           text = text + tag(:link, itemprop: "item", href: options[:current_link])
         end
 
         text = text + tag(:meta, itemprop: "position", content: "#{position}")
-        content_tag(fragment_tag.to_sym, text, class: fragment_class, itemprop: "itemListElement", itemscope: "", itemtype: "https://schema.org/ListItem", "aria-current": aria_current, data: link_data)
+        content_tag(fragment_tag.to_sym, text, class: fragment_class, itemprop: "itemListElement", itemscope: "", itemtype: "https://schema.org/ListItem", "aria-current": aria_current, data: options[:link_data])
       end
 
       def render_container(html)
