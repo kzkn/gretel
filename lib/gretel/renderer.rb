@@ -19,7 +19,8 @@ module Gretel
       posttext_class: "posttext",
       link_class: nil,
       id: nil,
-      aria_current: nil
+      aria_current: nil,
+      link_data: nil
     }
 
     DEFAULT_STYLES = {
