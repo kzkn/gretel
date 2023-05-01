@@ -100,6 +100,7 @@ Option                   | Description                                          
 :container_tag           | Tag type that contains the breadcrumbs.                                                                                    | `:div`
 :fragment_tag            | Tag type to contain each breadcrumb fragment/link.                                                                         | None
 :aria_current            | Value of `aria-current` attribute.                                                                                         | None
+:link_data               | Adds data attributes to breadcrumb                                                                                         | `nil`
 
 ### Styles
 

@@ -320,6 +320,11 @@ describe Gretel::ViewHelpers, type: :helper do
       breadcrumb :with_root
       assert_dom_equal(%{<div class="breadcrumbs"><a href="/">Home</a> &rsaquo; <span class="current" aria-current="page">About</span></div>}, breadcrumbs(aria_current: "page").to_s)
     end
+
+    it "generates with data attributes" do
+      breadcrumb :basic
+      assert_dom_equal(%{<div class="breadcrumbs"><a href="/" data-foo="bar" data-baz="qux">Home</a> &rsaquo; <span class="current" >About</span></div>}, breadcrumbs(link_data: { foo: "bar", baz: "qux" }).to_s)
+    end
   end
 
   describe 'Styles' do
