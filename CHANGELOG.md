@@ -4,7 +4,7 @@
 
 ## Version 4.5.0
 * Use `link` element for link item in semantic markup instead of `meta` element (via #36, thanks @tkawa)
-* Use `link_data` to set data attributes for link item (via #38, thanks @SpaYco)
+* Add `link_data` option to set data attributes for link item (via #38, thanks @SpaYco)
 
 ## Version 4.4.0
 * Support Bootstrap 5. See the `:style` option in the readme for more info (via #30, thanks @tochi)
