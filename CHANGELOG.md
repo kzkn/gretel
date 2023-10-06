@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+## Version 4.6.0
+* Support Rails 7.1
+
 ## Version 4.5.0
 * Use `link` element for link item in semantic markup instead of `meta` element (via #36, thanks @tkawa)
 * Add `link_data` option to set data attributes for link item (via #38, thanks @SpaYco)
