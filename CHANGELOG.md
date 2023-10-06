@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+* Support Rails 7.1
 
 ## Version 4.5.0
 * Use `link` element for link item in semantic markup instead of `meta` element (via #36, thanks @tkawa)
