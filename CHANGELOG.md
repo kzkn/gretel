@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## Version 4.6.0
 * Support Rails 7.1
 
 ## Version 4.5.0
