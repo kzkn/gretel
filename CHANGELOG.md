@@ -3,6 +3,21 @@
 ## Unreleased
 * Add `breadcrumbs_cache_key` for providing the fragment cache key of the current breacrumbs (via #3)
 
+## Version 4.6.0
+* Support Rails 7.1
+
+## Version 4.5.0
+* Use `link` element for link item in semantic markup instead of `meta` element (via #36, thanks @tkawa)
+* Add `link_data` option to set data attributes for link item (via #38, thanks @SpaYco)
+
+## Version 4.4.0
+* Support Bootstrap 5. See the `:style` option in the readme for more info (via #30, thanks @tochi)
+* Support Rails 7.0
+* Link class is now customizable with `<%= breadcrumbs link_class: "some-class" %>`. (via #10)
+
+## Version 4.3.0
+* Support generating `aria-current` attribute. It's disabled by default. See the readme for more info
+
 ## Version 4.2.0
 * Support generating JSON-LD structured data. See the readme for more info (via #26, thanks @dkniffin)
 

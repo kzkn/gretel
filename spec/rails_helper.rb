@@ -74,4 +74,9 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  # NOTE: Set the default value of `Rails::Dom::Testing.default_html_version` explicitly for Rails 5.1
+  config.before(:suite) do
+    Rails::Dom::Testing.default_html_version = :html4
+  end
 end

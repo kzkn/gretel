@@ -7,7 +7,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["kzkn@users.noreply.github.com"]
   gem.description   = %q{Gretel is a Ruby on Rails plugin that makes it easy yet flexible to create breadcrumbs.}
   gem.summary       = %q{Flexible Ruby on Rails breadcrumbs plugin.}
-  gem.homepage      = "http://github.com/kzkn/gretel"
+  gem.homepage      = "https://github.com/kzkn/gretel"
   gem.license       = "MIT"
 
   gem.files         = Dir.chdir(File.expand_path('..', __FILE__)) do
@@ -15,8 +15,12 @@ Gem::Specification.new do |gem|
   end
   gem.require_paths = ["lib"]
 
-  gem.add_dependency "railties", [">= 5.1", "< 7.0"]
-  gem.add_dependency "actionview", [">= 5.1", "< 7.0"]
+  gem.metadata = {
+    "changelog_uri" => "https://github.com/kzkn/gretel/blob/master/CHANGELOG.md",
+  }
+
+  gem.add_dependency "railties", [">= 5.1", "< 7.2"]
+  gem.add_dependency "actionview", [">= 5.1", "< 7.2"]
   gem.add_development_dependency "sqlite3"
   gem.add_development_dependency "rspec-rails"
   gem.add_development_dependency "simplecov"

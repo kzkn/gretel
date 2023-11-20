@@ -1,5 +1,5 @@
 [![Gem Version](https://badge.fury.io/rb/gretel.svg)](http://badge.fury.io/rb/gretel)
-[![Build Status](https://travis-ci.org/kzkn/gretel.svg?branch=master)](https://travis-ci.org/kzkn/gretel)
+[![](https://github.com/kzkn/gretel/workflows/CI/badge.svg)](https://github.com/kzkn/gretel/actions/workflows/ci.yml)
 
 <img src="http://i.imgur.com/CAKEaBM.png" alt="Handle breadcrumb trails... like a boss :)" />
 
@@ -96,8 +96,11 @@ Option                   | Description                                          
 :current_class           | CSS class for the current link or span. Can be set to `nil` for no class.                                                  | `"current"`
 :pretext_class           | CSS class for the pretext, if given. Can be set to `nil` for no class.                                                     | `"pretext"`
 :posttext_class          | CSS class for the posttext, if given. Can be set to `nil` for no class.                                                    | `"posttext"`
+:link_class              | CSS class for the link, if given. Can be set to `nil` for no class.                                                        | None
 :container_tag           | Tag type that contains the breadcrumbs.                                                                                    | `:div`
 :fragment_tag            | Tag type to contain each breadcrumb fragment/link.                                                                         | None
+:aria_current            | Value of `aria-current` attribute.                                                                                         | None
+:link_data               | Adds data attributes to breadcrumb                                                                                         | `nil`
 
 ### Styles
 
@@ -109,7 +112,8 @@ Style          | Description
 `:ol`          | Renders the links in `<li>` elements contained in an outer `<ol>`.
 `:ul`          | Renders the links in `<li>` elements contained in an outer `<ul>`.
 `:bootstrap`   | Renders the links for use in [Bootstrap v3](https://getbootstrap.com/docs/3.4/).
-`:bootstrap4`  | Renders the links for use in [Bootstrap v4](https://getbootstrap.com/).
+`:bootstrap4`  | Renders the links for use in [Bootstrap v4](https://getbootstrap.com/docs/4.6/getting-started/introduction/).
+`:bootstrap5`  | Renders the links for use in [Bootstrap v5](https://getbootstrap.com/).
 `:foundation5` | Renders the links for use in [Foundation 5](https://get.foundation/).
 
 Or you can build the breadcrumbs manually for full customization; see below.
@@ -202,6 +206,11 @@ end
 crumb :user do |user|
   link user_name_for(user), user
 end
+
+# I18n
+crumb :home do
+  link t("breadcrumbs.home"), root_path
+end
 ```
 
 ## Building the breadcrumbs manually
@@ -224,7 +233,7 @@ add them back is to use JSON-LD structured data:
 
 ```erb
 <script type="application/ld+json">
-  <%= breadcrumbs.structured_data(url_base: "https://example.com")) %>
+  <%= breadcrumbs.structured_data(url_base: "https://example.com") %>
 </script>
 ```
 
@@ -232,7 +241,7 @@ Or, you can infer `url_base` from `request`:
 
 ```erb
 <script type="application/ld+json">
-  <%= breadcrumbs.structured_data(url_base: "#{request.protocol}#{request.host_with_port}")) %>
+  <%= breadcrumbs.structured_data(url_base: "#{request.protocol}#{request.host_with_port}") %>
 </script>
 ```
 
@@ -327,6 +336,25 @@ breadcrumbs do |links|
     link.nonexisting_option  # => nil
   end
 end
+```
+
+### ARIA support
+
+You can improve the accessibility of your page with the markup that specified in [ARIA](https://www.w3.org/TR/wai-aria-practices/examples/breadcrumb/index.html). Gretel supports generating `aria-current` attribute:
+
+```erb
+<% breadcrumb :issue, @issue %>
+<%= breadcrumbs aria_current: "page" %>
+```
+
+This will generate the following HTML (indented for readability):
+
+```html
+<div class="breadcrumbs">
+  <a href="/">Home</a> &rsaquo;
+  <a href="/issues">All issues</a> &rsaquo;
+  <span class="current" aria-current="page">My Issue</span>
+</div>
 ```
 
 ## Documentation

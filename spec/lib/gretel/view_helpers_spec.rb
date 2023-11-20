@@ -45,7 +45,12 @@ describe Gretel::ViewHelpers, type: :helper do
 
     it "semantic breadcrumb" do
       breadcrumb :with_root
-      assert_dom_equal(%{<div class="breadcrumbs" itemscope="itemscope" itemtype="https://schema.org/BreadcrumbList"><span itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem"><a itemprop="item" href="/"><span itemprop="name">Home</span></a><meta itemprop="position" content="1" /></span> &rsaquo; <span class="current" itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem"><span itemprop="name">About</span><meta itemprop="item" content="http://test.host/about" /><meta itemprop="position" content="2" /></span></div>}, breadcrumbs(semantic: true).to_s)
+      assert_dom_equal(%{<div class="breadcrumbs" itemscope="itemscope" itemtype="https://schema.org/BreadcrumbList"><span itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem"><a itemprop="item" href="/"><span itemprop="name">Home</span></a><meta itemprop="position" content="1" /></span> &rsaquo; <span class="current" itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem"><span itemprop="name">About</span><link itemprop="item" href="/about" /><meta itemprop="position" content="2" /></span></div>}, breadcrumbs(semantic: true).to_s)
+    end
+
+    it "semantic breadcrumb with current link" do
+      breadcrumb :with_root
+      assert_dom_equal(%{<div class="breadcrumbs" itemscope="itemscope" itemtype="https://schema.org/BreadcrumbList"><span itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem"><a itemprop="item" href="/"><span itemprop="name">Home</span></a><meta itemprop="position" content="1" /></span> &rsaquo; <span class="current" itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem"><a itemprop="item" href="/about"><span itemprop="name">About</span></a><meta itemprop="position" content="2" /></span></div>}, breadcrumbs(semantic: true, link_current: true).to_s)
     end
 
     it "doesn't show root alone" do
@@ -107,6 +112,11 @@ describe Gretel::ViewHelpers, type: :helper do
       assert_dom_equal(%{<div class="breadcrumbs"><a class="custom_fragment_class" href="/">Home</a> &rsaquo; <span class="custom_fragment_class current">About</span></div>}, breadcrumbs(fragment_class: "custom_fragment_class").to_s)
     end
 
+    it "custom fragment class and custom link class" do
+      breadcrumb :basic
+      assert_dom_equal(%{<div class="breadcrumbs"><a class="custom_fragment_class custom_link_class" href="/">Home</a> &rsaquo; <span class="custom_fragment_class current">About</span></div>}, breadcrumbs(fragment_class: "custom_fragment_class", link_class: "custom_link_class").to_s)
+    end
+
     it "custom current class" do
       breadcrumb :basic
       assert_dom_equal(%{<div class="breadcrumbs"><a href="/">Home</a> &rsaquo; <span class="custom_current_class">About</span></div>}, breadcrumbs(current_class: "custom_current_class").to_s)
@@ -120,6 +130,11 @@ describe Gretel::ViewHelpers, type: :helper do
     it "custom posttext class" do
       breadcrumb :basic
       assert_dom_equal(%{<div class="breadcrumbs"><a href="/">Home</a> &rsaquo; <span class="current">About</span> <span class="custom_posttext_class">after breadcrumbs</span></div>}, breadcrumbs(posttext: "after breadcrumbs", posttext_class: "custom_posttext_class").to_s)
+    end
+
+    it "custom link class" do
+      breadcrumb :basic
+      assert_dom_equal(%{<div class="breadcrumbs"><a href="/" class="custom_link_class">Home</a> &rsaquo; <span class="current">About</span></div>}, breadcrumbs(link_class: "custom_link_class").to_s)
     end
 
     it "unsafe html" do
@@ -295,6 +310,21 @@ describe Gretel::ViewHelpers, type: :helper do
         breadcrumbs
       end.to raise_error(ArgumentError)
     end
+
+    it "generates with aria-current='location'" do
+      breadcrumb :with_root
+      assert_dom_equal(%{<div class="breadcrumbs"><a href="/">Home</a> &rsaquo; <span class="current" aria-current="location">About</span></div>}, breadcrumbs(aria_current: "location").to_s)
+    end
+
+    it "generates with aria-current='page'" do
+      breadcrumb :with_root
+      assert_dom_equal(%{<div class="breadcrumbs"><a href="/">Home</a> &rsaquo; <span class="current" aria-current="page">About</span></div>}, breadcrumbs(aria_current: "page").to_s)
+    end
+
+    it "generates with data attributes" do
+      breadcrumb :basic
+      assert_dom_equal(%{<div class="breadcrumbs"><a href="/" data-foo="bar" data-baz="qux">Home</a> &rsaquo; <span class="current" >About</span></div>}, breadcrumbs(link_data: { foo: "bar", baz: "qux" }).to_s)
+    end
   end
 
   describe 'Styles' do
@@ -323,6 +353,11 @@ describe Gretel::ViewHelpers, type: :helper do
       assert_dom_equal(%{<ol class="breadcrumb"><li class="breadcrumb-item"><a href="/">Home</a></li><li class="breadcrumb-item active">About</li></ol>}, breadcrumbs(style: :bootstrap4).to_s)
     end
 
+    it "bootstrap5 style" do
+      breadcrumb :basic
+      assert_dom_equal(%{<ol class="breadcrumb"><li class="breadcrumb-item"><a href="/">Home</a></li><li class="breadcrumb-item active">About</li></ol>}, breadcrumbs(style: :bootstrap5).to_s)
+    end
+
     it "foundation5 style" do
       breadcrumb :basic
       assert_dom_equal(%{<ul class="breadcrumbs"><li><a href="/">Home</a></li><li class="current">About</li></ul>}, breadcrumbs(style: :foundation5).to_s)
@@ -335,7 +370,7 @@ describe Gretel::ViewHelpers, type: :helper do
 
     it "custom semantic container and fragment tags" do
       breadcrumb :basic
-      assert_dom_equal(%{<c class="breadcrumbs" itemscope="itemscope" itemtype="https://schema.org/BreadcrumbList"><f itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem"><a itemprop="item" href="/"><span itemprop="name">Home</span></a><meta itemprop="position" content="1" /></f> &rsaquo; <f class="current" itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem"><span itemprop="name">About</span><meta itemprop="item" content="http://test.host/about" /><meta itemprop="position" content="2" /></f></c>}, breadcrumbs(container_tag: :c, fragment_tag: :f, semantic: true).to_s)
+      assert_dom_equal(%{<c class="breadcrumbs" itemscope="itemscope" itemtype="https://schema.org/BreadcrumbList"><f itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem"><a itemprop="item" href="/"><span itemprop="name">Home</span></a><meta itemprop="position" content="1" /></f> &rsaquo; <f class="current" itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem"><span itemprop="name">About</span><link itemprop="item" href="/about" /><meta itemprop="position" content="2" /></f></c>}, breadcrumbs(container_tag: :c, fragment_tag: :f, semantic: true).to_s)
     end
 
     it "unknown style" do
