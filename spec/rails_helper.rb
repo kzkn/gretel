@@ -45,7 +45,12 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = File.expand_path('fixtures', __dir__)
+  fixture_path = File.expand_path('fixtures', __dir__)
+  if config.respond_to?(:fixture_paths=) # NOTE: check for Rails 6.1
+    config.fixture_paths = [fixture_path]
+  else
+    config.fixture_path = fixture_path
+  end
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
