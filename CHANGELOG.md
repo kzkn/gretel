@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## Version 5.0.0
 * Drop support Ruby < 3.0
 * Drop support Rails < 6.1
 
