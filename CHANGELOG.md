@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+* Drop support Ruby < 3.0
+* Drop support Rails < 6.1
 
 ## Version 4.6.0
 * Support Rails 7.1
