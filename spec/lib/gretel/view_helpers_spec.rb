@@ -1,4 +1,5 @@
 require "rails_helper"
+require "ostruct"
 
 describe Gretel::ViewHelpers, type: :helper do
   helper :application
