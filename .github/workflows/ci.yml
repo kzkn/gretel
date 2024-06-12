@@ -18,7 +18,7 @@ jobs:
           - { ruby_version: '3.0', rails_version: master }
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
@@ -35,7 +35,7 @@ jobs:
         bundle exec rake
 
     - name: Upload coverage
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: always()
       with:
         name: "coverage-ruby-${{ matrix.ruby_version }}-rails-${{ matrix.rails_version }}"
