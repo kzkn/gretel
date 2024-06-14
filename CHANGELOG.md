@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+* Add `breadcrumbs_cache_key` for providing the fragment cache key of the current breacrumbs (via #3)
 
 ## Version 5.0.0
 * Drop support Ruby < 3.0
