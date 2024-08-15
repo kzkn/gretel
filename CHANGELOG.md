@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+## Version 5.0.1
+* Support Rails 7.2 (via #45, thanks @alec-c4)
+
 ## Version 5.0.0
 * Drop support Ruby < 3.0
 * Drop support Rails < 6.1
