@@ -1,7 +1,8 @@
 # Changelog
 
 ## Unreleased
-* Add `breadcrumbs_cache_key` for providing the fragment cache key of the current breacrumbs (via #3)
+* Detach fork
+* Add `breadcrumbs_cache_key` for providing the fragment cache key of the current breacrumbs (via #7)
 
 ## Version 5.0.1
 * Support Rails 7.2 (via #45, thanks @alec-c4)

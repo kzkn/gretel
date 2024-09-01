@@ -16,7 +16,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.metadata = {
-    "changelog_uri" => "https://github.com/kzkn/gretel/blob/master/CHANGELOG.md",
+    "changelog_uri" => "https://github.com/kzkn/gretel/blob/main/CHANGELOG.md",
   }
 
   gem.add_dependency "railties", ">= 6.1"

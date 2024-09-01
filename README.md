@@ -360,7 +360,7 @@ This will generate the following HTML (indented for readability):
 ## Documentation
 
 * [Full documentation](https://rubydoc.info/gems/gretel)
-* [Changelog](https://github.com/kzkn/gretel/blob/master/CHANGELOG.md)
+* [Changelog](https://github.com/kzkn/gretel/blob/main/CHANGELOG.md)
 * [Tutorial on using Gretel](https://www.sitepoint.com/breadcrumbs-rails-gretel/) (Sitepoint)
 
 ## Versioning
@@ -385,6 +385,12 @@ To contribute:
 10. Create new pull request
 
 Thanks.
+
+## History
+
+This repository had been a fork of [lassebunk/gretel](https://github.com/lassebunk/gretel) for a long time. However, due to some reasons, the maintenance of this repository was stopped and the official repository of gretel was transferred to [WilHall/gretel](https://github.com/WilHall/gretel), which is the fork of lassebunk/gretel. WilHall/gretel was then transferred to kzkn/gretel, where it continues to be maintained. During this time, kzkn/gretel was a fork of lassebunk/gretel, so `lassebunk/gretel:master` was selected by default when a pull request was made. This caused unnecessary confusion for contributors to gretel.
+
+As mentioned earlier, lassebunk/gretel is no longer maintained. I have decided to detach the fork for the future of gretel, with all due respect to [@lassebunk](https://github.com/lassebunk) for creating gretel.
 
 ## Contributors
 
