@@ -259,6 +259,26 @@ If you supply a block, it will yield the link if it is present:
 <% end %>
 ```
 
+## Caching breadcrumbs as a fragment cache
+
+If you want to cache the rendered breacrumbs, you can use the Rails `cache` method with the `breadcrumbs_cache_key`.
+
+```erb
+<% cache breadcrumbs_cache_key do %>
+  <%= breadcrumbs %>
+<% end %>
+```
+
+By default cache key is a array of current breadcrumb key and passed arguments of each crumbs.
+If you want to use other values for cache key of crumb, you can use the `cache_key` in your crumb block.
+
+```ruby
+crumb :user do |user|
+  link user.profile.name, user_path(user)
+  cache_key user.profile
+end
+```
+
 ## Nice to know
 
 ### Access to view methods
