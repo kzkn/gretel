@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+* Detach fork
 
 ## Version 5.0.1
 * Support Rails 7.2 (via #45, thanks @alec-c4)
