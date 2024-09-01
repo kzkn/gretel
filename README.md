@@ -340,7 +340,7 @@ This will generate the following HTML (indented for readability):
 ## Documentation
 
 * [Full documentation](https://rubydoc.info/gems/gretel)
-* [Changelog](https://github.com/kzkn/gretel/blob/master/CHANGELOG.md)
+* [Changelog](https://github.com/kzkn/gretel/blob/main/CHANGELOG.md)
 * [Tutorial on using Gretel](https://www.sitepoint.com/breadcrumbs-rails-gretel/) (Sitepoint)
 
 ## Versioning
