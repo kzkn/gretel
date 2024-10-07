@@ -3,6 +3,9 @@
 ## Unreleased
 * Detach fork
 
+## Version 5.0.2
+* Fix json-ld string format (via #8, thanks @mario-amazing)
+
 ## Version 5.0.1
 * Support Rails 7.2 (via #45, thanks @alec-c4)
 
