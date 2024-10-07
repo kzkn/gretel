@@ -170,17 +170,17 @@ module Gretel
 
         items = @links.each_with_index.map do |link, i|
           {
-            "@type": "ListItem",
-            "position": i + 1,
-            "name": link.text,
-            "item": "#{url_base}#{link.url}"
+            "@type" => "ListItem",
+            "position" => i + 1,
+            "name" => link.text,
+            "item" => "#{url_base}#{link.url}"
           }
         end
 
         {
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": items
+          "@context" => "https://schema.org",
+          "@type" => "BreadcrumbList",
+          "itemListElement" => items
         }
       end
 
