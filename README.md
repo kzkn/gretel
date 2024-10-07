@@ -233,7 +233,7 @@ add them back is to use JSON-LD structured data:
 
 ```erb
 <script type="application/ld+json">
-  <%= breadcrumbs.structured_data(url_base: "https://example.com") %>
+  <%= raw breadcrumbs.structured_data(url_base: "https://example.com").to_json %>
 </script>
 ```
 
@@ -241,7 +241,7 @@ Or, you can infer `url_base` from `request`:
 
 ```erb
 <script type="application/ld+json">
-  <%= breadcrumbs.structured_data(url_base: "#{request.protocol}#{request.host_with_port}") %>
+  <%= raw breadcrumbs.structured_data(url_base: "#{request.protocol}#{request.host_with_port}").to_json %>
 </script>
 ```
 
