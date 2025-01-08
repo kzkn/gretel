@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        rails_version: [6.1.0, 7.0.0, 7.1.0, 7.2.0, main]
+        rails_version: [6.1.0, 7.0.0, 7.1.0, 7.2.0, 8.0.0, main]
         ruby_version: ['3.3', '3.2', '3.1']
         exclude:
           - { ruby_version: '3.1', rails_version: main }
