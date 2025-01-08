@@ -16,6 +16,7 @@ jobs:
         ruby_version: ['3.4', '3.3', '3.2', '3.1']
         exclude:
           - { ruby_version: '3.1', rails_version: main }
+          - { ruby_version: '3.1', rails_version: 8.0.0 }
 
     steps:
     - uses: actions/checkout@v4
