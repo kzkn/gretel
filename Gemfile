@@ -7,8 +7,8 @@ case rails_version
 when 'main', '>= 0'
   gem 'rails', rails_version == 'main' ? { github: 'rails/rails' } : rails_version
   gem 'sqlite3', '>= 2.0'
-when '6.1.0'
-  gem 'rails', '~> 6.1.0'
+when '6.1.0', '7.0.0'
+  gem 'rails', "~> #{rails_version}"
   gem 'sqlite3', '~> 1.4'
   gem 'concurrent-ruby', '1.3.4' # SEE: https://stackoverflow.com/a/79361034
 else
