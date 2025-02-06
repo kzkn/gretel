@@ -11,3 +11,7 @@ else
   gem 'rails', "~> #{rails_version}"
   gem 'sqlite3', rails_version < '8' ? '~> 1.4' : '>= 2.0'
 end
+
+gem 'rspec-rails'
+gem 'simplecov'
+gem 'simplecov-erb'

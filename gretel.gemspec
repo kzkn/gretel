@@ -21,7 +21,4 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "railties", ">= 6.1"
   gem.add_dependency "actionview", ">= 6.1"
-  gem.add_development_dependency "rspec-rails"
-  gem.add_development_dependency "simplecov"
-  gem.add_development_dependency "simplecov-erb"
 end
