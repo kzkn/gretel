@@ -22,7 +22,7 @@ jobs:
           - { ruby_version: '3.4', rails_version: 7.0.0 }
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
 
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
