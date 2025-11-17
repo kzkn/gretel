@@ -30,7 +30,8 @@ module Gretel
       bootstrap: { container_tag: :ol, fragment_tag: :li, class: "breadcrumb", current_class: "active" },
       bootstrap4: { container_tag: :ol, fragment_tag: :li, class: "breadcrumb", fragment_class: "breadcrumb-item", current_class: "active" },
       bootstrap5: { container_tag: :ol, fragment_tag: :li, class: "breadcrumb", fragment_class: "breadcrumb-item", current_class: "active" },
-      foundation5: { container_tag: :ul, fragment_tag: :li, class: "breadcrumbs", current_class: "current" }
+      foundation5: { container_tag: :ul, fragment_tag: :li, class: "breadcrumbs", current_class: "current" },
+      bulma: { container_tag: :nav, wrapper_tag: :ul, fragment_tag: :li, class: "breadcrumb", current_class: "is-active", aria_current: "page" }
     }
 
     def initialize(context, breadcrumb_key, *breadcrumb_args)
@@ -306,7 +307,18 @@ module Gretel
       end
 
       def render_container(html)
-        content_tag(options[:container_tag], html, id: options[:id], class: options[:class])
+        if options[:wrapper_tag]
+          html = content_tag(options[:wrapper_tag], html)
+        end
+        content_tag(options[:container_tag], html, id: options[:id], class: options[:class], **container_attributes)
+      end
+
+      private
+
+      def container_attributes
+        attrs = {}
+        attrs[:"aria-label"] = "breadcrumbs" if options[:container_tag] == :nav
+        attrs
       end
     end
 
@@ -329,7 +341,18 @@ module Gretel
       end
 
       def render_container(html)
-        content_tag(options[:container_tag], html, id: options[:id], class: options[:class], itemscope: "", itemtype: "https://schema.org/BreadcrumbList")
+        if options[:wrapper_tag]
+          html = content_tag(options[:wrapper_tag], html)
+        end
+        content_tag(options[:container_tag], html, id: options[:id], class: options[:class], itemscope: "", itemtype: "https://schema.org/BreadcrumbList", **container_attributes)
+      end
+
+      private
+
+      def container_attributes
+        attrs = {}
+        attrs[:"aria-label"] = "breadcrumbs" if options[:container_tag] == :nav
+        attrs
       end
     end
   end

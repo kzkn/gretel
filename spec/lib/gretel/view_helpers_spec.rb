@@ -364,6 +364,61 @@ describe Gretel::ViewHelpers, type: :helper do
       assert_dom_equal(%{<ul class="breadcrumbs"><li><a href="/">Home</a></li><li class="current">About</li></ul>}, breadcrumbs(style: :foundation5).to_s)
     end
 
+    it "bulma style" do
+      breadcrumb :basic
+      assert_dom_equal(%{<nav aria-label="breadcrumbs" class="breadcrumb"><ul><li><a href="/">Home</a></li><li aria-current="page" class="is-active">About</li></ul></nav>}, breadcrumbs(style: :bulma).to_s)
+    end
+
+    it "bulma style with arrow separator" do
+      breadcrumb :basic
+      assert_dom_equal(%{<nav aria-label="breadcrumbs" class="breadcrumb has-arrow-separator"><ul><li><a href="/">Home</a></li><li aria-current="page" class="is-active">About</li></ul></nav>}, breadcrumbs(style: :bulma, class: "breadcrumb has-arrow-separator").to_s)
+    end
+
+    it "bulma style with bullet separator" do
+      breadcrumb :basic
+      assert_dom_equal(%{<nav aria-label="breadcrumbs" class="breadcrumb has-bullet-separator"><ul><li><a href="/">Home</a></li><li aria-current="page" class="is-active">About</li></ul></nav>}, breadcrumbs(style: :bulma, class: "breadcrumb has-bullet-separator").to_s)
+    end
+
+    it "bulma style with dot separator" do
+      breadcrumb :basic
+      assert_dom_equal(%{<nav aria-label="breadcrumbs" class="breadcrumb has-dot-separator"><ul><li><a href="/">Home</a></li><li aria-current="page" class="is-active">About</li></ul></nav>}, breadcrumbs(style: :bulma, class: "breadcrumb has-dot-separator").to_s)
+    end
+
+    it "bulma style with succeeds separator" do
+      breadcrumb :basic
+      assert_dom_equal(%{<nav aria-label="breadcrumbs" class="breadcrumb has-succeeds-separator"><ul><li><a href="/">Home</a></li><li aria-current="page" class="is-active">About</li></ul></nav>}, breadcrumbs(style: :bulma, class: "breadcrumb has-succeeds-separator").to_s)
+    end
+
+    it "bulma style small size" do
+      breadcrumb :basic
+      assert_dom_equal(%{<nav aria-label="breadcrumbs" class="breadcrumb is-small"><ul><li><a href="/">Home</a></li><li aria-current="page" class="is-active">About</li></ul></nav>}, breadcrumbs(style: :bulma, class: "breadcrumb is-small").to_s)
+    end
+
+    it "bulma style medium size" do
+      breadcrumb :basic
+      assert_dom_equal(%{<nav aria-label="breadcrumbs" class="breadcrumb is-medium"><ul><li><a href="/">Home</a></li><li aria-current="page" class="is-active">About</li></ul></nav>}, breadcrumbs(style: :bulma, class: "breadcrumb is-medium").to_s)
+    end
+
+    it "bulma style large size" do
+      breadcrumb :basic
+      assert_dom_equal(%{<nav aria-label="breadcrumbs" class="breadcrumb is-large"><ul><li><a href="/">Home</a></li><li aria-current="page" class="is-active">About</li></ul></nav>}, breadcrumbs(style: :bulma, class: "breadcrumb is-large").to_s)
+    end
+
+    it "bulma style with separator and size combined" do
+      breadcrumb :basic
+      assert_dom_equal(%{<nav aria-label="breadcrumbs" class="breadcrumb has-arrow-separator is-large"><ul><li><a href="/">Home</a></li><li aria-current="page" class="is-active">About</li></ul></nav>}, breadcrumbs(style: :bulma, class: "breadcrumb has-arrow-separator is-large").to_s)
+    end
+
+    it "bulma style with parent breadcrumb" do
+      breadcrumb :with_parent
+      assert_dom_equal(%{<nav aria-label="breadcrumbs" class="breadcrumb"><ul><li><a href="/">Home</a></li><li><a href="/about">About</a></li><li aria-current="page" class="is-active">Contact</li></ul></nav>}, breadcrumbs(style: :bulma).to_s)
+    end
+
+    it "bulma semantic style" do
+      breadcrumb :basic
+      assert_dom_equal(%{<nav class="breadcrumb" itemscope="itemscope" itemtype="https://schema.org/BreadcrumbList" aria-label="breadcrumbs"><ul><li itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem"><a itemprop="item" href="/"><span itemprop="name">Home</span></a><meta itemprop="position" content="1" /></li><li class="is-active" itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem" aria-current="page"><span itemprop="name">About</span><link itemprop="item" href="/about" /><meta itemprop="position" content="2" /></li></ul></nav>}, breadcrumbs(style: :bulma, semantic: true).to_s)
+    end
+
     it "custom container and fragment tags" do
       breadcrumb :basic
       assert_dom_equal(%{<c class="breadcrumbs"><f><a href="/">Home</a></f> &rsaquo; <f class="current">About</f></c>}, breadcrumbs(container_tag: :c, fragment_tag: :f).to_s)
