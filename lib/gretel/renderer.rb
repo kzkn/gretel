@@ -31,7 +31,7 @@ module Gretel
       bootstrap4: { container_tag: :ol, fragment_tag: :li, class: "breadcrumb", fragment_class: "breadcrumb-item", current_class: "active" },
       bootstrap5: { container_tag: :ol, fragment_tag: :li, class: "breadcrumb", fragment_class: "breadcrumb-item", current_class: "active" },
       foundation5: { container_tag: :ul, fragment_tag: :li, class: "breadcrumbs", current_class: "current" },
-      bulma: { container_tag: :nav, wrapper_tag: :ul, fragment_tag: :li, class: "breadcrumb", current_class: "is-active", aria_current: "page" }
+      bulma: { container_tag: :nav, wrapper_tag: :ul, fragment_tag: :li, class: "breadcrumb", current_class: "is-active", aria_current: "page", link_current: true }
     }
 
     def initialize(context, breadcrumb_key, *breadcrumb_args)
@@ -295,7 +295,9 @@ module Gretel
             text = breadcrumb_link_to(text, url, "aria-current": options[:aria_current], data: options[:link_data])
             content_tag(fragment_tag, text, class: fragment_class)
           else
-            content_tag(fragment_tag, text, class: fragment_class, "aria-current": options[:aria_current], data: options[:link_data])
+            # Wrap text in a span for consistent structure (especially for Bulma breadcrumbs)
+            wrapped_text = content_tag(:span, text)
+            content_tag(fragment_tag, wrapped_text, class: fragment_class, "aria-current": options[:aria_current], data: options[:link_data])
           end
         elsif url.present?
           breadcrumb_link_to(text, url, class: join_classes(fragment_class, options[:link_class]), "aria-current": options[:aria_current], data: options[:link_data])

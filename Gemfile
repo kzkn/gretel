@@ -19,3 +19,5 @@ end
 gem 'rspec-rails'
 gem 'simplecov'
 gem 'simplecov-erb'
+
+gem "puma", "~> 7.1"

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gretel Bulma Demo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= csrf_meta_tags %>
+
+  <!-- Bulma CSS 1.0.4 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+
+  <style>
+    body {
+      padding: 2rem;
+    }
+    .demo-section {
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: #f5f5f5;
+      border-radius: 6px;
+    }
+    .demo-section h2 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    .demo-section .code {
+      background: #fff;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.9rem;
+      border: 1px solid #ddd;
+    }
+    .demo-section .result {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #fff;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+    }
+    nav.breadcrumb {
+      margin: 0;
+    }
+    .navigation {
+      margin: 2rem 0;
+    }
+    .navigation a {
+      margin-right: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="hero is-primary">
+      <div class="hero-body">
+        <p class="title">
+          Gretel Breadcrumbs - Bulma Style Demo
+        </p>
+        <p class="subtitle">
+          Testing all Bulma breadcrumb variations with Bulma 1.0.4
+        </p>
+      </div>
+    </section>
+
+    <div class="navigation">
+      <div class="buttons">
+        <%= link_to "Home", demo_index_path, class: "button" %>
+        <%= link_to "Default", demo_default_style_path, class: "button is-link" %>
+        <%= link_to "Arrow", demo_arrow_separator_path, class: "button is-link" %>
+        <%= link_to "Bullet", demo_bullet_separator_path, class: "button is-link" %>
+        <%= link_to "Dot", demo_dot_separator_path, class: "button is-link" %>
+        <%= link_to "Succeeds", demo_succeeds_separator_path, class: "button is-link" %>
+        <%= link_to "Small", demo_small_size_path, class: "button is-info" %>
+        <%= link_to "Medium", demo_medium_size_path, class: "button is-info" %>
+        <%= link_to "Large", demo_large_size_path, class: "button is-info" %>
+        <%= link_to "Combined", demo_combined_path, class: "button is-success" %>
+        <%= link_to "With Parent", demo_with_parent_path, class: "button is-warning" %>
+      </div>
+    </div>
+
+    <%= yield %>
+  </div>
+</body>
+</html>

@@ -157,7 +157,7 @@ This generates HTML like:
   <ul>
     <li><a href="/">Home</a></li>
     <li><a href="/issues">All issues</a></li>
-    <li class="is-active" aria-current="page">My Issue</li>
+    <li class="is-active"><a href="/issues/123" aria-current="page">My Issue</a></li>
   </ul>
 </nav>
 ```

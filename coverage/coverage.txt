@@ -2,4 +2,4 @@
 Incomplete test coverage
 --------------------------------------------------------------------------------
 
-/lib/gretel.rb: 95.24% (missed: 52)
+100% test coverage. You're all set, friend!

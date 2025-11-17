@@ -1,0 +1,31 @@
+<% breadcrumb :demo_home %>
+
+<div class="demo-section">
+  <h2>Welcome to the Gretel Bulma Breadcrumbs Demo</h2>
+
+  <div class="content">
+    <p>
+      This demo showcases all the different Bulma breadcrumb styles available in Gretel.
+      Click on the buttons above to see each variation in action.
+    </p>
+
+    <h3>Available Demos:</h3>
+    <ul>
+      <li><strong>Default</strong> - Basic Bulma breadcrumb style</li>
+      <li><strong>Arrow</strong> - Breadcrumb with arrow separator (→)</li>
+      <li><strong>Bullet</strong> - Breadcrumb with bullet separator (•)</li>
+      <li><strong>Dot</strong> - Breadcrumb with dot separator (·)</li>
+      <li><strong>Succeeds</strong> - Breadcrumb with succeeds separator (≻)</li>
+      <li><strong>Small</strong> - Small size breadcrumb</li>
+      <li><strong>Medium</strong> - Medium size breadcrumb</li>
+      <li><strong>Large</strong> - Large size breadcrumb</li>
+      <li><strong>Combined</strong> - Arrow separator with large size</li>
+      <li><strong>With Parent</strong> - Breadcrumb with parent hierarchy</li>
+    </ul>
+  </div>
+
+  <h3>Current Breadcrumb:</h3>
+  <div class="result">
+    <%= breadcrumbs style: :bulma %>
+  </div>
+</div>
