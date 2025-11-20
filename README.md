@@ -115,11 +115,11 @@ Style          | Description
 `:bootstrap4`  | Renders the links for use in [Bootstrap v4](https://getbootstrap.com/docs/4.6/getting-started/introduction/).
 `:bootstrap5`  | Renders the links for use in [Bootstrap v5](https://getbootstrap.com/).
 `:foundation5` | Renders the links for use in [Foundation 5](https://get.foundation/).
-`:bulma`       | Renders the links for use in [Bulma](https://bulma.io/documentation/components/breadcrumb/) or [Tailwind CSS](https://tailwindcss.com/) with Bulma-compatible classes. Supports customizable separators and sizes.
+`:bulma`       | Renders the links for use in [Bulma](https://bulma.io/documentation/components/breadcrumb/). Supports customizable separators and sizes.
 
 #### Bulma Style
 
-The `:bulma` style renders breadcrumbs compatible with [Bulma CSS](https://bulma.io/documentation/components/breadcrumb/) and [Tailwind CSS](https://tailwindcss.com/) (when using Bulma-compatible classes).
+The `:bulma` style renders breadcrumbs compatible with [Bulma CSS](https://bulma.io/documentation/components/breadcrumb/).
 
 **Basic usage:**
 

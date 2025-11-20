@@ -295,9 +295,7 @@ module Gretel
             text = breadcrumb_link_to(text, url, "aria-current": options[:aria_current], data: options[:link_data])
             content_tag(fragment_tag, text, class: fragment_class)
           else
-            # Wrap text in a span for consistent structure (especially for Bulma breadcrumbs)
-            wrapped_text = content_tag(:span, text)
-            content_tag(fragment_tag, wrapped_text, class: fragment_class, "aria-current": options[:aria_current], data: options[:link_data])
+            content_tag(fragment_tag, text, class: fragment_class, "aria-current": options[:aria_current], data: options[:link_data])
           end
         elsif url.present?
           breadcrumb_link_to(text, url, class: join_classes(fragment_class, options[:link_class]), "aria-current": options[:aria_current], data: options[:link_data])
