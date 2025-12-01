@@ -115,7 +115,7 @@ Style          | Description
 `:bootstrap4`  | Renders the links for use in [Bootstrap v4](https://getbootstrap.com/docs/4.6/getting-started/introduction/).
 `:bootstrap5`  | Renders the links for use in [Bootstrap v5](https://getbootstrap.com/).
 `:foundation5` | Renders the links for use in [Foundation 5](https://get.foundation/).
-`:bulma`       | Renders the links for use in [Bulma](https://bulma.io/documentation/components/breadcrumb/). Supports customizable separators and sizes.
+`:bulma`       | Renders the links for use in [Bulma](https://bulma.io/documentation/components/breadcrumb/).
 
 #### Bulma Style
 
@@ -124,30 +124,9 @@ The `:bulma` style renders breadcrumbs compatible with [Bulma CSS](https://bulma
 **Basic usage:**
 
 ```erb
-<%= breadcrumbs style: :bulma %>
-```
-
-**Customize the separator** by passing CSS classes:
-
-```erb
-<%= breadcrumbs style: :bulma, class: "breadcrumb has-arrow-separator" %>
-<%= breadcrumbs style: :bulma, class: "breadcrumb has-bullet-separator" %>
-<%= breadcrumbs style: :bulma, class: "breadcrumb has-dot-separator" %>
-<%= breadcrumbs style: :bulma, class: "breadcrumb has-succeeds-separator" %>
-```
-
-**Customize the size:**
-
-```erb
-<%= breadcrumbs style: :bulma, class: "breadcrumb is-small" %>
-<%= breadcrumbs style: :bulma, class: "breadcrumb is-medium" %>
-<%= breadcrumbs style: :bulma, class: "breadcrumb is-large" %>
-```
-
-**Combine separator and size:**
-
-```erb
-<%= breadcrumbs style: :bulma, class: "breadcrumb has-arrow-separator is-large" %>
+<nav class="breadcrumb" aria-label="breadcrumbs">
+  <%= breadcrumbs style: :bulma %>
+</nav>
 ```
 
 This generates HTML like:
@@ -162,7 +141,13 @@ This generates HTML like:
 </nav>
 ```
 
-Or you can build the breadcrumbs manually for full customization; see below.
+**Customize separators:**
+
+```erb
+<nav class="breadcrumb has-arrow-separator" aria-label="breadcrumbs">
+  <%= breadcrumbs style: :bulma %>
+</nav>
+```
 
 If you add other widely used styles, please submit a [Pull Request](https://github.com/kzkn/gretel/pulls) so others can use them too.
 

@@ -31,7 +31,7 @@ module Gretel
       bootstrap4: { container_tag: :ol, fragment_tag: :li, class: "breadcrumb", fragment_class: "breadcrumb-item", current_class: "active" },
       bootstrap5: { container_tag: :ol, fragment_tag: :li, class: "breadcrumb", fragment_class: "breadcrumb-item", current_class: "active" },
       foundation5: { container_tag: :ul, fragment_tag: :li, class: "breadcrumbs", current_class: "current" },
-      bulma: { container_tag: :nav, wrapper_tag: :ul, fragment_tag: :li, class: "breadcrumb", current_class: "is-active", aria_current: "page", link_current: true }
+      bulma: { container_tag: :ul, fragment_tag: :li, class: nil, current_class: "is-active", aria_current: "page", link_current: true }
     }
 
     def initialize(context, breadcrumb_key, *breadcrumb_args)
@@ -307,9 +307,6 @@ module Gretel
       end
 
       def render_container(html)
-        if options[:wrapper_tag]
-          html = content_tag(options[:wrapper_tag], html)
-        end
         content_tag(options[:container_tag], html, id: options[:id], class: options[:class], **container_attributes)
       end
 
@@ -341,9 +338,6 @@ module Gretel
       end
 
       def render_container(html)
-        if options[:wrapper_tag]
-          html = content_tag(options[:wrapper_tag], html)
-        end
         content_tag(options[:container_tag], html, id: options[:id], class: options[:class], itemscope: "", itemtype: "https://schema.org/BreadcrumbList", **container_attributes)
       end
 
