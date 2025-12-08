@@ -307,15 +307,7 @@ module Gretel
       end
 
       def render_container(html)
-        content_tag(options[:container_tag], html, id: options[:id], class: options[:class], **container_attributes)
-      end
-
-      private
-
-      def container_attributes
-        attrs = {}
-        attrs[:"aria-label"] = "breadcrumbs" if options[:container_tag] == :nav
-        attrs
+        content_tag(options[:container_tag], html, id: options[:id], class: options[:class])
       end
     end
 
@@ -338,15 +330,7 @@ module Gretel
       end
 
       def render_container(html)
-        content_tag(options[:container_tag], html, id: options[:id], class: options[:class], itemscope: "", itemtype: "https://schema.org/BreadcrumbList", **container_attributes)
-      end
-
-      private
-
-      def container_attributes
-        attrs = {}
-        attrs[:"aria-label"] = "breadcrumbs" if options[:container_tag] == :nav
-        attrs
+        content_tag(options[:container_tag], html, id: options[:id], class: options[:class], itemscope: "", itemtype: "https://schema.org/BreadcrumbList")
       end
     end
   end
