@@ -3,6 +3,7 @@
 ## Unreleased
 * Detach fork
 * Fix README about JSON-LD (via #8, thanks @mario-amazing)
+* Support Bulma. See the `:style` option in the readme for more info (via #15, thanks @lporras)
 
 ## Version 5.0.1
 * Support Rails 7.2 (via #45, thanks @alec-c4)
