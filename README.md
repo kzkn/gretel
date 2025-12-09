@@ -81,7 +81,7 @@ You can pass options to `<%= breadcrumbs %>`, e.g. `<%= breadcrumbs pretext: "Yo
 
 Option                   | Description                                                                                                                | Default
 ------------------------ | -------------------------------------------------------------------------------------------------------------------------- | -------
-:style                   | How to render the breadcrumbs. Can be `:inline`, `:ol`, `:ul`, or `:bootstrap`. See below for more info.                   | `:inline`
+:style                   | How to render the breadcrumbs. Can be `:inline`, `:ol`, `:ul`, `:bootstrap`, `:bootstrap4`, `:bootstrap5`, `:foundation5`, or `:bulma`. See below for more info.                   | `:inline`
 :pretext                 | Text to be rendered before breadcrumb, e.g. `"You are here: "`.                                                            | None
 :posttext                | Text to be appended after breadcrumb, e.g. `"Text after breacrumb"`,                                                       | None
 :separator               | Separator between links, e.g. `" &rsaquo; "`.                                                                              | `" &rsaquo; "`
@@ -115,8 +115,39 @@ Style          | Description
 `:bootstrap4`  | Renders the links for use in [Bootstrap v4](https://getbootstrap.com/docs/4.6/getting-started/introduction/).
 `:bootstrap5`  | Renders the links for use in [Bootstrap v5](https://getbootstrap.com/).
 `:foundation5` | Renders the links for use in [Foundation 5](https://get.foundation/).
+`:bulma`       | Renders the links for use in [Bulma](https://bulma.io/documentation/components/breadcrumb/).
 
-Or you can build the breadcrumbs manually for full customization; see below.
+#### Bulma Style
+
+The `:bulma` style renders breadcrumbs compatible with [Bulma CSS](https://bulma.io/documentation/components/breadcrumb/).
+
+**Basic usage:**
+
+```erb
+<nav class="breadcrumb" aria-label="breadcrumbs">
+  <%= breadcrumbs style: :bulma %>
+</nav>
+```
+
+This generates HTML like:
+
+```html
+<nav class="breadcrumb" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/issues">All issues</a></li>
+    <li class="is-active"><a href="/issues/123" aria-current="page">My Issue</a></li>
+  </ul>
+</nav>
+```
+
+**Customize separators:**
+
+```erb
+<nav class="breadcrumb has-arrow-separator" aria-label="breadcrumbs">
+  <%= breadcrumbs style: :bulma %>
+</nav>
+```
 
 If you add other widely used styles, please submit a [Pull Request](https://github.com/kzkn/gretel/pulls) so others can use them too.
 

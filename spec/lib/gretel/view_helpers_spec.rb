@@ -364,6 +364,16 @@ describe Gretel::ViewHelpers, type: :helper do
       assert_dom_equal(%{<ul class="breadcrumbs"><li><a href="/">Home</a></li><li class="current">About</li></ul>}, breadcrumbs(style: :foundation5).to_s)
     end
 
+    it "bulma style" do
+      breadcrumb :basic
+      assert_dom_equal(%{<ul><li><a href="/">Home</a></li><li class="is-active"><a href="/about" aria-current="page">About</a></li></ul>}, breadcrumbs(style: :bulma).to_s)
+    end
+
+    it "bulma semantic style" do
+      breadcrumb :basic
+      assert_dom_equal(%{<ul itemscope="itemscope" itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem"><a itemprop="item" href="/"><span itemprop="name">Home</span></a><meta itemprop="position" content="1" /></li><li class="is-active" itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem"><a itemprop="item" href="/about" aria-current="page"><span itemprop="name">About</span></a><meta itemprop="position" content="2" /></li></ul>}, breadcrumbs(style: :bulma, semantic: true).to_s)
+    end
+
     it "custom container and fragment tags" do
       breadcrumb :basic
       assert_dom_equal(%{<c class="breadcrumbs"><f><a href="/">Home</a></f> &rsaquo; <f class="current">About</f></c>}, breadcrumbs(container_tag: :c, fragment_tag: :f).to_s)
