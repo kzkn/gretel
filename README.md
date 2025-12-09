@@ -149,7 +149,12 @@ This generates HTML like:
 </nav>
 ```
 
+---
+
+Or you can build the breadcrumbs manually for full customization; see below.
+
 If you add other widely used styles, please submit a [Pull Request](https://github.com/kzkn/gretel/pulls) so others can use them too.
+
 
 ## More examples
 
