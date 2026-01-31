@@ -40,6 +40,8 @@ jobs:
           - { ruby_version: '3.4', gemfile: 'rails_70' }
           - { ruby_version: '4.0', gemfile: 'rails_61' }
           - { ruby_version: '4.0', gemfile: 'rails_70' }
+          - { ruby_version: '4.0', gemfile: 'rails_71' }
+          - { ruby_version: '4.0', gemfile: 'rails_72' }
 
     steps:
     - uses: actions/checkout@v6
