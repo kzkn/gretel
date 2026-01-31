@@ -1,5 +1,4 @@
 require "rails_helper"
-require "ostruct"
 
 describe Gretel::ViewHelpers, type: :helper do
   helper :application
@@ -273,14 +272,14 @@ describe Gretel::ViewHelpers, type: :helper do
     end
 
     it "current link url is set to fullpath" do
-      self.request = OpenStruct.new(fullpath: "/testpath?a=1&b=2")
+      self.request = Struct.new(:fullpath).new("/testpath?a=1&b=2")
 
       breadcrumb :basic
       expect(breadcrumbs.last.url).to eq "/testpath?a=1&b=2"
     end
 
     it "current link url is not set to fullpath using link_current_to_request_path=false" do
-      self.request = OpenStruct.new(fullpath: "/testpath?a=1&b=2")
+      self.request = Struct.new(:fullpath).new("/testpath?a=1&b=2")
 
       breadcrumb :basic
       expect(breadcrumbs(link_current_to_request_path: false).last.url).to eq "/about"
