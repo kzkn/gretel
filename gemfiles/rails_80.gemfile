@@ -1,9 +1,10 @@
 source "http://rubygems.org"
 
-gemspec
+gemspec path: '../'
 
-gem 'rails'
+gem 'rails', '~> 8.0.0'
 gem 'sqlite3'
+
 gem 'rspec-rails'
 gem 'simplecov'
 gem 'simplecov-erb'
