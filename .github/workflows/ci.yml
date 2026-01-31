@@ -26,6 +26,7 @@ jobs:
           - rails_81
           - rails_main
         ruby_version:
+          - '4.0'
           - '3.4'
           - '3.3'
           - '3.2'
@@ -37,6 +38,8 @@ jobs:
           - { ruby_version: '3.1', gemfile: 'rails_80' }
           - { ruby_version: '3.4', gemfile: 'rails_61' }
           - { ruby_version: '3.4', gemfile: 'rails_70' }
+          - { ruby_version: '4.0', gemfile: 'rails_61' }
+          - { ruby_version: '4.0', gemfile: 'rails_70' }
 
     steps:
     - uses: actions/checkout@v6
